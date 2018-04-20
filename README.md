@@ -37,3 +37,24 @@ optional arguments:
   --quiet, -q    Suppress most informational output.
   --verbose, -v  Increase verbosity.
 ```
+
+## Setting up
+
+The script is intended to be run from `cron`. The way I set this up is like this:
+
+* A task running every few minutes that blocks IPs with failed connection attempts that aren't already blocked:
+```
+# block
+*/15 *    * * *        smtpban.py -b 2>&1 >>/var/log/smtpban.log
+```
+
+* Once a day, old blockings are removed from the database file and the routing table:
+```
+10 00    * * *        smtpban.py -e 2>&1 >>/var/log/smtpban.log
+```
+
+* Also once a day, I email a status report to myself:
+```
+00 08    * * *        smtpban.py -p
+```
+This just prints out an overview to STDOUT. I let `cron` handle the emailing part.

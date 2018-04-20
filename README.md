@@ -1,4 +1,4 @@
-#smtpban.py
+# smtpban.py
 
 ## Introduction
 

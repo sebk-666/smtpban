@@ -59,4 +59,4 @@ The script is intended to be run from `cron`. The way I set this up is like this
 # report
 00 08    * * *        smtpban.py -p
 ```
-This just prints out an overview to STDOUT. I let `cron` handle the emailing part.
+This just prints out an overview to `STDOUT`. I let `cron` handle the emailing part.

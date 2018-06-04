@@ -2,16 +2,15 @@
 
 ## Introduction
 
-Simple Python script that scans a local `maillog` file for failed connection attempts
-from remote hosts and then blocks any IP address with more than a specified number of failed attempts.
+Simple Python script that scans a local `maillog` file for failed connection attempts from remote hosts and then blocks any IP address with more than a specified number of failed attempts.
 
 Blocking is done by setting up a "black hole" route for this IP address, i.e. `route add -host <IP> reject`.
 
-The currently blackholed IP addresses are stored in a database file, so the "blackhole-routes" can 
-easily be set up again after a system reboot.
+The currently blackholed IP addresses are stored in a GNU dbm database file, so the "blackhole-routes" can easily be set up again after a system reboot.
 
-An expiry-mechanism allows to remove IP addresses from the "block list" after a configurable number of days
-so the routing table will not be cluttered up on a long-running system.
+An expiry-mechanism allows to remove IP addresses from the "block list" after a configurable number of days so the routing table will not be cluttered up on a long-running system.
+
+There's also a whitelist that prevents the specified IP/network addresses from being blocked by the script.
 
 Tested only on my personal Linux server running Postfix.
 
@@ -37,6 +36,10 @@ optional arguments:
   --quiet, -q    Suppress most informational output.
   --verbose, -v  Increase verbosity.
 ```
+
+## Configuration
+All configuration is done through variables at the top of the script.
+There are comments to each variable to explain their purpose.
 
 ## Setting up
 

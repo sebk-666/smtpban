@@ -157,9 +157,6 @@ def blackhole(oper, ip_addr):
         """define a custom exception"""
         pass
 
-    print("Blackhole: {} : {}".format(oper, ip_addr))
-    return True
-
     if re.match(r'(?:[0-9]{1,3}\.){3}[0-9]{1,3}', ip_addr) is None:
         raise ArgumentError("Specified ip address does not look right: "
                             + ip_addr)
@@ -307,7 +304,6 @@ def block():
         if skip:
             continue
 
-        print("Block: ", ip_addr)
         if ip_addr in blocklist:
             # ignore ip addresses from log file if already in our blockist
             continue
